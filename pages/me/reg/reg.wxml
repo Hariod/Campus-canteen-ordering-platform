@@ -1,0 +1,48 @@
+<view class="mcontainer">
+  <view class="item">
+    <view class="login-item">
+      <view class="login-item-info">用户名(手机号)</view>
+      <view><input bindinput="usernameInput"></input></view>
+    </view>
+  </view>
+
+  <view class="item">
+   <view class="login-item">
+     <view class="login-item-info">密码</view>
+      <view class="login-pwd">
+       <input style="flex-grow:1" password='true' bindinput='passwordInput'></input>
+    </view>
+   </view>
+  </view>
+
+ <view class="item">
+   <view class="login-item">
+     <view class="login-item-info">再次输入密码</view>
+      <view class="login-pwd">
+       <input style="flex-grow:1" password='true' bindinput='passwordInput'></input>
+    </view>
+   </view>
+  </view>
+
+  <view class="item">
+   <view class="login-item">
+     <view class="login-item-info">验证码</view>
+      <view class="login-pwd">
+       <input style="flex-grow:1" password='true' bindinput='passwordInput'></input>
+       <button class="yzm" bindtap="yzmClick">发送验证码</button>
+    </view>
+   </view>
+  </view>
+  <view class="item">
+   <view class="login-item bottom">
+   <navigator url="../user/user">
+   
+    <button class="login-btn" bindtap='regbtnClick'>注册</button>
+    </navigator>
+   </view>
+  </view>
+
+  <view class="item bottom-info">
+   
+    </view>
+  </view>

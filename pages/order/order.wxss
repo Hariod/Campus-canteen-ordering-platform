@@ -1,0 +1,84 @@
+/* pages/order/order.wxss */
+page{
+  background-color:#F5F5F5;
+}
+.order{
+  background-color:white;
+  margin-top: 20rpx;
+}
+.order_top{
+  display: flex;
+  padding:20rpx 30rpx;
+   border-bottom:4rpx solid #F5F5F5;
+    position: relative;
+}
+image{
+  width:75rpx;
+  height: 75rpx;
+}
+.nameTimer{
+  margin-left:30rpx;
+ 
+}
+.store_name{
+  font-size:34rpx;
+}
+.order_time{
+  font-size: 28rpx;
+}
+.order_status{
+  position: absolute;
+  top:20rpx;
+  right:30rpx;
+  font-size: 32rpx;
+}
+.order_center{
+  display: flex;
+  padding:20rpx 30rpx;
+  margin-left: 100rpx;
+  border-bottom: 4rpx solid #F5F5F5;
+  justify-content: space-between;
+}
+.order_vegetable{
+  font-size: 32rpx;
+}
+.order_cost{
+font-size: 32rpx;
+}
+.order_bottom{
+  padding:20rpx 30rpx;
+  display: flex;
+  justify-content:flex-end;
+}
+.order_again{
+  border: 2rpx solid #34AAFF;
+  padding: 10rpx;
+  font-size:32rpx;
+  border-radius: 14rpx;
+  
+}
+.order_delete{
+  border: 2rpx solid red;
+  padding: 10rpx;
+  font-size:32rpx;
+  margin-right: 10rpx;
+  border-radius: 14rpx;
+}
+.login-btn{
+  width:75px;
+  height: 30px;
+  color:white;
+  background-color: #34AAFF;
+  font-size: 10px;
+  padding-left:0;
+  padding-right: 0;
+  padding-top:2px;
+  margin-top:10px;
+}
+
+.unlogin{
+  position: absolute;
+  top:50%;
+  left:50%;
+  margin: -30px -120px;
+}

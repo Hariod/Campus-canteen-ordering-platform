@@ -1,0 +1,79 @@
+<!-- 信息部分开始 -->
+<form bindsubmit="formSubmit" report-submit="true">
+  <view class="info">
+    <!-- 姓名部分 -->
+    <view class="item">
+      <text>联系人:</text>
+      <view class="right" style='margin-left:17px'>
+        <input type="text" value='{{new_receive_address.name}}' name="name" placeholder="{{name}}" focus="{{focus}}" />
+      </view>
+    </view>
+
+ <!-- 性别部分 -->
+    <view class="item">
+    <text></text>
+      <view class="right_sex"  style='margin-left:30px'>
+      <view class='sex' wx:for='{{sex_list}}' wx:key="sex"> 
+       
+      
+      <block>
+       <view class='sex_choose' bindtap='sex_choose' data-sex='{{item.sex}}' data-index='{{index}}'>
+        <image  style='width:20px; height:20px;' src="{{item.img}}"></image>
+        <text  style='margin-left:8px;' > {{item.sex}}</text>
+      
+       </view>
+       </block> 
+      
+       </view>
+      </view>
+    </view>
+
+
+    <!-- 电话部分 -->
+    <view class="item">
+      <text>联系电话:</text>
+      <view class="right">
+        <input name="tel" value='{{new_receive_address.tel}}' type="number" placeholder="{{tel}}" focus="{{focus}}" />
+      </view>
+    </view>
+
+
+
+    <!-- 收货地址部分 -->
+    <view class="item" bindtap='openmap'>
+      <text>收货地址:</text>
+      <view class="right_rece_address">
+        <view class='address_right_map'>
+          <image style='width:18px; height:18px;' src='../../image/map2.png'></image>
+        </view>
+        <view class='address_right_text'>{{choose_address}}</view>
+        <view class='address_right_right'>
+          <image style='width:18px; height:18px;' src='../../image/right.png'></image>
+        </view>
+
+
+      </view>
+    </view>
+
+    <!-- 详细地址部分 -->
+    <view class="item">
+      <text>门牌号:</text>
+      <view class="right" style='margin-left:12px;'>
+        <input value='{{new_receive_address.address_detail}}' name="door" type="text" placeholder="{{door}}" focus="{{focus}}" />
+
+      </view>
+    </view>
+
+    <!-- 设为常用地址 -->
+    <view class="item">
+      <text style='width:120px; '>设为常用地址:</text>
+      <view class="right_used_address">
+        <view wx:for='{{areaRange}}' wx:key='addres_choose'>
+          <view class="{{address_selected==index?'frequent_address_selected':'frequent_address'}}" data-index='{{index}}' data-address='{{item}}' bindtap='address_selected'>{{item}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 信息部分结束 -->
+  <button class="save" formType="submit">保存地址</button>
+</form>

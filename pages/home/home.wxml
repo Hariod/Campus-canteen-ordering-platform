@@ -1,0 +1,123 @@
+<import src="../common/sort_list.wxml" />
+<view class="mask" hidden="{{mask1Hidden}}" bindtap="mask1Cancel">
+  <template is="sort_list" data="{{selected,sortSelected}}" />
+  <view class="overall-sort-list">
+    <block wx:for="{{sortList}}" wx:key="">
+      <view class="overall-sort" data-index="{{index}}" bindtap="sortSelected">{{item.sort}}</view>
+    </block>
+  </view>
+</view>
+<view class="mask" hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
+  <template is="sort_list" data="{{selected,sortSelected}}" />
+
+  <!-- 筛选栏目 -->
+  <scroll-view class="filterList" scroll-y="true">
+    <view class="filterList-characteristic-title">商家特色</view>
+    <view class="filterList-characteristic-items">
+      <block wx:for="{{characteristicList}}" wx:key="">
+        <view class="filterList-characteristic-item {{characteristicSelected[index]==true?'characteristic-selected':''}}" catchtap="characteristicSelected" data-index="{{index}}">{{item.text}}</view>
+      </block>
+    </view>
+
+    <view class="filterList-discount-title">优惠活动(单选)</view>
+    <view class="filterList-discount-items">
+      <block wx:for="{{discountList}}" wx:key="">
+        <view class="filterList-discount-item {{discountSelected==index?'discount-selected':''}}" catchtap="discountSelected" data-index="{{index}}">
+          <text class="filterList-discount-item-icon" style="background:{{item.iconColor}}">{{item.icon}}</text> {{item.text}}
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="filterList-footer">
+    <view class="filterList-footer-delect" catchtap="clearSelectedNumb">清除筛选</view>
+    <view class="filterList-footer-finish" bindtap="finish">完成
+      <view class="filterList-footer-finish-number" hidden="{{selectedNumb==0}}">{{selectedNumb}}
+      </view>
+    </view>
+  </view>
+</view>
+
+
+
+<scroll-view bindscrolltolower="lower" class="scroll-restaurants-list" scroll-y="true" style="height:100%">
+  <view class='head_line'></view>
+  <view class="heard">
+  <!-- 定位 -->
+    <navigator url="/pages/location/location">
+      <view class="heard-location">
+        <image src="/pages/image/location.png" class="heard-location-icon" />
+
+        <text class="heard-location-text">{{location}}</text>
+      </view>
+    </navigator>
+
+    <view class="heard-search">
+      <image src="/pages/image/search.png" class="heard-search-icon" /> 鸡排
+    </view>
+  </view>
+      <!-- 广告位 -->
+
+        <swiper class="categoryList" autoplay="true" circular='true'>
+    <block wx:for="{{adver_img}}" wx:key="">
+
+      <swiper-item>
+     
+     <image mode='aspectFill' style='width:100%;' src='{{item}}'></image>
+ 
+      </swiper-item>
+     
+    </block>
+  </swiper>
+    <!--// 广告位 -->
+  <swiper class="categoryList" >
+    <block wx:for="{{categoryList}}" wx:key="">
+
+      <swiper-item>
+        <block wx:for="{{item}}" wx:key="">
+          <view class="category-info">
+            <image src="{{item.src}}" class="category-image"></image>
+            <view class="category-text">{{item.name}}</view>
+          </view>
+        </block>
+      </swiper-item>
+    </block>
+  </swiper>
+    <!--// 广告位 -->
+
+ 
+  <view class="header-title">食堂窗口</view>
+  <template is="sort_list" data="{{selected,sortSelected}}" />
+     <!-- 商户 -->
+  <view class="restaurantsList">
+    <block wx:for="{{restaurant}}" wx:key="">
+      <view  bindtap='to_store'  data-index='{{index}}' data-store_name='{{item.name}}'  data-store_img='{{item.src}}'
+       data-store_desc='{{item.desc}}'  data-store_sales='{{item.sales}}'  data-store_initial_price='{{item.initial_price}}'  data-store_distribution_price='{{item.distribution_price}}' data-store_id='{{item.store_id}}'>
+        <view class="restaurants-list">
+          <view class="restaurants-info-image">
+            <image src="{{item.src}}" class="restaurants-image" />
+          </view>
+          <view class="restaurants-info">
+            <view class="restaurants-info-name">{{item.name}}</view>
+            <view class="restaurants-info-rating">
+              <view class="restaurants-info-rating-stars">{{item.desc}}</view>
+              <view class="restaurants-info-rating-sales">月售 {{item.sales}}单</view>
+               <view class="restaurants-info-price">
+              起送 {{item.initial_price}}¥ | 配送 {{item.distribution_price}}¥
+            </view>
+            </view>
+           
+          </view>
+          <view class="restaurants-distribution">
+          <!-- {{item.distance}}  {{item.time}}  -->
+            <view class="restaurants-distribution-distance">
+             状态
+            </view>
+            <view class="restaurants-distribution-time">
+            {{item.statues}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

@@ -1,0 +1,59 @@
+<!--pages/order/order_detail/order_detail.wxml-->
+<view class="container">
+  <view class="detail_top">
+    <image src="http://i1.umei.cc/uploads/tu/201806/9999/02218db8bd.jpg" class="store_bigimg"></image>
+    <text>外卖订单</text>
+  </view>
+
+  <view class="detail_center">
+    <view class="store_name">
+      <image src="http://i1.umei.cc/uploads/tu/201806/9999/02218db8bd.jpg" class="store_smallimg"></image>
+      <text>1号店铺</text>
+    </view>
+    <view class="order_content" wx:for="{{arr}}" wx:key="{{key}}">
+      <view class="order_content_detail">
+        <text class="food_name">{{item.food_name}}</text>
+        <text class="food_number">x{{item.food_number}}</text>
+        <text class="food_price">￥{{item.food_price}}</text>
+      </view>
+    </view>
+    <view class="discount">
+      <text>满减优惠</text>
+      <text>-￥{{discount}}</text>
+    </view>
+    <view class="summarize">
+      <view style='color:#34AAFF'>
+        <image src="../../image/kfxt.png"></image>联系商家</view>
+      <text>实付￥79</text>
+    </view>
+  </view>
+
+  <view class="distribution_information">
+    <view class="di_header">
+      配送信息
+    </view>
+    <view class="di_content" style="border:none">
+      <view style='border-bottom:1px solid #ccc;padding:10px 0'>配送方式:商家配送</view>
+      <view class="delivery_address">
+        <view class="address_left" >
+          送货地址:
+        </view>
+        <view class="address_right">
+          <text>{{customer_name}}</text>
+          <text>{{customer_phone}}</text>
+          <text>{{customer_address}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="order_information">
+    <view class="oi_header">
+      订单信息
+    </view>
+    <view class="oi_content">
+      <view>订单号:{{order_number}}</view>
+      <view>支付方式:在线支付</view>
+      <view style="border:none"><text>下单时间:{{order_data}}—{{order_time}}</text></view>
+    </view>
+  </view>
+</view>

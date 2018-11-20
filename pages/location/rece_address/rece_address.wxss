@@ -1,0 +1,127 @@
+page {  
+  display: block;  
+  min-height: 100%;  
+  background-color:#f6f6f6;
+  font-family: "微软雅黑";
+  font-size: 28rpx;
+  color:#353535;
+  position: relative;
+} 
+.info{
+  background-color: #fff;
+}
+.item{
+  height:90rpx;
+  align-items: center;
+  display:flex;
+  margin-left:30rpx;
+  border-bottom:1rpx solid #eee;
+}
+
+input placeholder{
+  color:red;
+}
+.area{
+  margin: 10% auto;
+  align-content: center;
+  width:150rpx;
+
+  text-align: center;
+}
+.remind{
+  padding-top: 6rpx;
+  color:#e64340;
+  font-size:20rpx;
+}
+.save{
+  width:92%;
+  margin-top:30rpx;
+  background-color: #1198f3;
+  color:#fff;
+}
+.right_rece_address{
+  display: flex;
+ 
+  width: 80%;
+  flex-direction: row;
+}
+.address_right_map{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 10px;
+
+}
+.address_right_right{
+padding-left: 1%;
+
+}
+.address_right_text{
+ margin-left: 10px;
+ width: 180px;
+ /* border: 2px solid red; */
+
+}
+.right_used_address{
+  /* border: 2px solid red; */
+
+  padding-left: 10%;
+  padding-right: 20%;
+width:60%;
+
+display: flex;
+flex-direction: row;
+
+justify-content: space-between;
+}
+ .frequent_address{
+border: 1px solid #999;
+text-align: center;
+color: black;
+width: 70rpx;
+height: 40rpx;
+margin: 2% auto;
+}
+.frequent_address_selected{
+border: 1px solid #1198f3;
+text-align: center;
+width: 70rpx;
+height: 40rpx;
+margin: 2% auto;
+color: #1198f3;
+
+}
+.sex{
+ margin-left: 15px;
+  width: 30%;
+ 
+  display: flex;
+  flex-direction: row;
+  padding: 3%;
+
+}
+.sex_choose{
+  display: flex;
+  flex-direction: row;
+
+}
+.right_sex{
+    display:flex;
+  flex-direction: row;
+  left: 50px;
+
+  padding-left: 50rpx;
+
+  width:60%;
+  height: 30px;
+
+}
+.right{
+
+  padding-left: 30rpx;
+  width:60%;
+  display:flex;
+}
+input{
+  width:100%;
+}
+

@@ -1,0 +1,168 @@
+.header{
+  display: flex;
+  height: 60rpx;
+  font-size: 28rpx;
+  padding: 15rpx 20rpx;
+  line-height: 60rpx;
+  border-bottom: 20rpx solid #F4F4F4;
+}
+.header .search-input{
+  height: 60rpx;
+  flex: 1;
+  padding-left: 30rpx;
+  background: #EFEFF5;
+  border-radius: 10rpx;
+  color: #6D6D6D;
+}
+.header .search-btn{
+  text-align: center;
+  margin-left: 20rpx;
+  width: 100rpx;
+  background: #AAAAAA;
+  border-radius: 10rpx;
+  color: #EBEBEB;
+}
+.getLocation{
+  font-size: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-bottom: 20rpx solid #F4F4F4;
+}
+.addLocation{
+  position: relative;
+  font-size: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 15rpx;
+}
+.addLocation-icon{
+  width: 40rpx;
+  line-height: 27rpx;
+  height: 40rpx;
+  text-align: center;
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
+
+
+}
+.line image{
+	width:100%;
+	height:20rpx;
+}
+.myLocation{
+  background: #F4F4F4;
+  height: 100rpx;
+
+  padding-left: 15rpx;
+  line-height: 90rpx;
+  font-size: 25rpx;
+  color: rgba(0, 0, 0, 0.288);
+  text-align: center;
+}
+.result-container{
+  position: fixed;
+  top: 90rpx;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+  background: white;
+}
+.search-result-list{
+  padding: 15rpx;
+  height: 100%;
+}
+.search-result{
+  line-height: 50rpx;
+  height: 100rpx;
+  font-size: 28rpx;
+  border-bottom: 1rpx solid #ECECEC;
+}
+.search-result-desc{
+  line-height: 45rpx;
+  font-size: 27rpx;
+  color: #AAAAAA;
+}
+
+
+
+
+page{
+  display: block;  
+  min-height: 100%;  
+  background-color:#f6f6f6;  
+  font-family: "微软雅黑";
+  font-size: 30rpx;
+  color:#353535;
+}
+.item{
+  background-color: #fff;
+  border-bottom:1rpx solid #e0e0e0;
+  display: flex;
+  padding:20rpx;
+  
+}
+.info{
+  
+  font-size:27rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:85%;
+}
+.info_up{
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+margin-right: 20px;
+}
+.item image{
+  width:50rpx;
+  padding-top:15rpx;
+  margin:0 15rpx;
+}
+.add{
+  width:100%;  
+  background-color:#fff;
+  position: absolute;
+  bottom: 0;
+  padding:15rpx 15rpx 30rpx 40rpx;
+  border-top:1rpx solid #e0e0e0;
+}
+.add image{
+  width:50rpx;
+  margin-top:15rpx;
+  margin-right:20rpx;
+}
+.add .right{
+  width:25rpx;
+  float:right;
+  margin-right:60rpx;
+  padding-top:15rpx;
+  color:#e0e0e0;
+}
+.text{
+  float:left;
+  margin-top:20rpx;
+}
+.left{
+  float:left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

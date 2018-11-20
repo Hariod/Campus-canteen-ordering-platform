@@ -1,0 +1,45 @@
+<!--user/user.wxml-->
+<view class="font">
+  <!--头部开始  -->
+  <view class='logs_header' style="background:{{color}}">
+    <view class='logs_img'>
+      <image src='{{avatarUrl}}' class='logs_imgs'></image>
+      <view class='logs_name'>
+        <view class='logs_name1'>{{nickName}}({{username}})</view>
+      </view>
+    </view>
+  </view>
+  <!--头部结束  -->
+
+  <view class='logs_order'>
+    <!--收货地址  -->
+    <view class='logs_center' bindtap='map'>
+      <view class='logs_centerimg'>
+        <image src='../../image/shouhuodizhi@2x.png' class='center_map' style='height:50rpx;'></image>
+        <view>收货地址</view>
+      </view>
+      <image src='../images/Path@2x.png' class='center_img'></image>
+    </view>
+  </view>
+
+  <view class='logs_seller'>
+    <view class='logs_center' style='border:none;' bindtap='seller'>
+      <view class='logs_centerimg'>
+        <image src='../../image/dianpu-fill@2x.png' class='center_map'></image>
+        <view>成为商家</view>
+      </view>
+      <image src='../images/Path@2x.png' class='center_img'></image>
+    </view>
+  </view>
+
+  <!--——————————————尾部——————————————  -->
+  <view class="footer">
+    <view class="copyright" bindtap='tzxcx'>
+      <view class='copyright_logo'>
+        <image mode='aspectFill' src="{{url}}{{bqxx.bq_logo}}" class='copyright_img'></image>
+        <view class='copyright_text'>{{bqxx.bq_name}}</view>
+      </view>
+      <view class='copyright_txt'>{{bqxx.support}}</view>
+    </view>
+  </view>
+</view>

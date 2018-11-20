@@ -1,0 +1,54 @@
+{
+  "pages":[
+   "pages/home/home",
+    "pages/store/store",
+    "pages/hot/hot",
+    "pages/order/order",
+    "pages/order/order_detail/order_detail",
+    "pages/me/reg/reg",
+    "pages/me/login/login",
+    "pages/me/user/user",
+    "pages/store/payed/payed",
+    "pages/store/pay/pay",
+    "pages/store/pay_success/pay_success",
+    "pages/location/location",
+    "pages/location/rece_address/rece_address"
+  ],
+  "window": {
+    "backgroundColor": "#f2f2f2",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#34AAFF",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#41B0FF",
+    "backgroundColor": "#fff",
+    "color": "#333",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "pages/image/shouye@2x.png",
+        "selectedIconPath": "pages/image/shouye-fill@2x.png"
+      },
+      {
+        "pagePath": "pages/hot/hot",
+        "text": "热销",
+        "iconPath": "pages/image/hots.png",
+        "selectedIconPath": "pages/image/hots-fill.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "pages/image/dingdan@2x.png",
+        "selectedIconPath": "pages/image/dingdan-fill@2x.png"
+      },
+      {
+        "pagePath": "pages/me/user/user",
+        "text": "我的",
+        "iconPath": "pages/image/wode@2x.png",
+        "selectedIconPath": "pages/image/wode-fill@2x.png"
+      }
+    ]
+  }
+}

@@ -1,0 +1,52 @@
+<view class="header">
+  <view class="search-input">
+    <input placeholder="你想定位到..." bindinput="input"></input>
+  </view>
+  <view class="search-btn">搜索</view>
+</view>
+<view class="result-container" hidden="{{hidden}}">
+
+  <scroll-view scroll-y="true" class="search-result-list" hidden="{{hidden}}">
+    <block wx:for="{{locationList}}" wx:key="">
+      <view class="search-result" bindtap="onTap" data-key="{{item.address}}">{{item.name}}
+        <view class="search-result-desc">{{item.address}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<view class="getLocation">点击定位<text bindtap='getLocation' style='color:#1198f3'>当前位置</text>或<text 
+bindtap='getLocation2' style='color:#1198f3'>手动选择</text></view>
+<view class="addLocation" bindtap='add_rece_address'>新增收货地址
+  <view>
+    <image class='addLocation-icon' src='../image/add.png'></image>
+  </view>
+</view>
+
+<view class="line">
+  <image src="../image/line.jpg" mode="aspectFit" repeat="repeat" />
+</view>
+
+<view class="myLocation">我的收货地址</view>
+
+
+<view class="item" wx:for="{{add_rece_address_list}}" wx:key='address' >
+
+<image src="{{item.image}}" mode="widthFix" bindtap="toCleanOrder" data-index="{{item.index}}" data-id="{{item.id}}" data-name="{{item.name}}" data-tel="{{item.tel}}" data-sex="{{item.sex}}" data-address_detail="{{item.address_detail}}" data-addre="{{item.addre}}" data-image="{{item.image}}"
+  data-address="{{item.address}}" data-frequent_address="{{item.frequent_address}}" />
+  <view class="info">
+    <view class='info_up'>
+      <text>{{item.name}}</text>
+      <text>{{item.sex}}</text>
+      <text> {{item.tel}}</text>
+      <text>{{item.frequent_address}}</text>
+    </view>
+    <text>地址：{{item.address}}{{item.address_detail}}</text>
+  </view>
+
+  <!-- 地址右侧编辑部分 -->
+  <view class="modify" bindtap="toModifyAddre"  data-index="{{item.index}}" data-id="{{item.id}}" data-name="{{item.name}}" data-tel="{{item.tel}}" data-sex="{{item.sex}}" data-address_detail="{{item.address_detail}}" data-addre="{{item.addre}}" data-image="{{item.image}}"
+  data-address="{{item.address}}" data-frequent_address="{{item.frequent_address}}" >
+    <image src="../image/modify.png" mode="widthFix" />
+  </view>
+</view>
+
