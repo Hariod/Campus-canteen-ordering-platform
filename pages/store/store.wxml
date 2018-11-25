@@ -4,12 +4,12 @@
   <!-- 中间内容 -->
   <view class="content-wrapper ">
     <view class="avatar">
-      <image style='width:70px; height:70px;' src="{{store_info.src}}"></image>
+      <image style='width:70px; height:70px;' src="{{store_info.store_img}}"></image>
     </view>
     <view class="content">
       <view class="title">
         <image src="../image/brand@2x.png" style="width:30px;height:18px;"></image>
-        <span class="name">{{store_info.name}}</span>
+        <span class="name">{{store_info.store_name}}</span>
       </view>
       <!-- <view class="description">
        38分钟送达
@@ -18,7 +18,7 @@
         <span class="icon" :class="classMap[seller.supports[0].type]">
           <image src="../image/desc1.png" style="width:12px;height:12px;"></image>
         </span>
-        <span class="text">{{store_info.desc}}</span>
+        <span class="text">{{store_info.store_desc}}</span>
       </view>
       <view v-if="seller.supports" class="support">
         <span class="icon" :class="classMap[seller.supports[0].type]">
@@ -34,7 +34,7 @@
   <!-- //公告栏 -->
   <view class="bulletin-wrapper">
     <image src="../image/bulletin@2x.png" style="width:22px;height:12px;"></image>
-    <span class="bulletin-text">"{{store_info.desc}}"</span>
+    <span class="bulletin-text">"{{store_info.store_desc}}"</span>
   </view>
   <view class="background">
     <image src="http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg" style="width:100%;height:100%;"></image>
@@ -46,7 +46,7 @@
 <view class="tab border-1px">
   <view class="tab-item">
     <a class='store_status_key'>营业状态</a>
-    <a class="{{store_status==1 ? 'store_status_vlaue_active':'store_status_vlaue_inactive'}}" bindtap="tabChange" data-type="0">{{store_info.statues}}</a>
+    <a class="{{store_info.statues=='营业中' ? 'store_status_vlaue_active':'store_status_vlaue_inactive'}}" bindtap="tabChange" data-type="0">{{store_info.statues}}</a>
   </view>
   <!-- <view class="tab-item">
     <a class="{{status==1 ? 'active':''}}" bindtap="tabChange" data-type="1">评论</a>
@@ -65,7 +65,7 @@
         <view class="menu-item {{classifySeleted==index?'menu-item_active':'menu-item'}}  border-1px" bindtap="selectMenu" data-item-index="{{index}}">
           <view class="text">
 
-            {{item.name}}
+            {{item.class_name}}
           </view>
         </view>
       </block>
@@ -79,21 +79,22 @@
 
     <view wx:for="{{goods}}"   wx:key="this" class="food-list food-list-hook" wx:for-index="parentIndex">
       <!-- 类目名称 -->
-      <view id="order{{parentIndex}}" class="title">{{item.name}}</view>
+      <view id="order{{parentIndex}}" class="title">{{item.class_name}}</view>
       <!-- 类目中的菜品 -->
       <view  wx:for="{{item.foods}}" wx:key="this" class="food-item" wx:for-item="food" data-food="{{food}}">
         <view class="icon">
-          <image src="{{food.icon}}" style="width: 57px;height: 57px"></image>
+          <image src="{{food.food_picpath}}" style="width: 57px;height: 57px"></image>
         </view>
         <view class="content">
-          <view class="name">{{food.name}}</view>
+          <view class="name">{{food.food_name}}</view>
           <!-- <view class="desc">{{food.description}}</view> -->
           <view class="extra">
-            <text class="count">月售{{food.sellCount}}</text>
-            <text class="count">好评{{food.rating}}</text>
+            <text class="count">月售{{food.food_sold}}</text>
+            <text class="count"></text>
+            <!-- <text class="count">好评{{food.rating}}</text> -->
           </view>
           <view class="price">
-            <view class="now">￥{{food.price}}</view>
+            <view class="now">￥{{food.food_price}}</view>
             <!-- <view class="old" wx:if="{{food.oldPrice}}">￥{{food.oldPrice}}</view> -->
           </view>
 
@@ -124,7 +125,7 @@
     </view>
   </scroll-view>
 
-  <!--shopCart-->
+  <!--shopCart购物车-->
   <view>
     <view>
       <view class="shopCart">
@@ -137,7 +138,8 @@
               <view class="num" wx:if="{{totalCount> 0}}">{{totalCount}}</view>
             </view>
             <view class="price highlight">￥{{totalPrice}}</view>
-            <view class="desc">另需配送费￥{{deliveryPrice}}元</view>
+            <view class="desc">另需配送费￥{{deliveryPrice}}元</view> 
+            
           </view>
           <view class="content-right"  catchtap="pay">
             <view bindtap='submit_pay' class="pay enough" :class="payClass">

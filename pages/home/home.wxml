@@ -1,6 +1,6 @@
 <import src="../common/sort_list.wxml" />
 <view class="mask" hidden="{{mask1Hidden}}" bindtap="mask1Cancel">
-  <template is="sort_list" data="{{selected,sortSelected}}" />
+  <!-- <template is="sort_list" data="{{selected,sortSelected}}" /> -->
   <view class="overall-sort-list">
     <block wx:for="{{sortList}}" wx:key="">
       <view class="overall-sort" data-index="{{index}}" bindtap="sortSelected">{{item.sort}}</view>
@@ -8,7 +8,7 @@
   </view>
 </view>
 <view class="mask" hidden="{{mask2Hidden}}" bindtap="mask2Cancel">
-  <template is="sort_list" data="{{selected,sortSelected}}" />
+  <!-- <template is="sort_list" data="{{selected,sortSelected}}" /> -->
 
   <!-- 筛选栏目 -->
   <scroll-view class="filterList" scroll-y="true">
@@ -86,12 +86,12 @@
 
  
   <view class="header-title">食堂窗口</view>
-  <template is="sort_list" data="{{selected,sortSelected}}" />
+  <!-- <template is="sort_list" data="{{selected,sortSelected}}" /> -->
      <!-- 商户 -->
   <view class="restaurantsList">
     <block wx:for="{{restaurant}}" wx:key="">
       <view  bindtap='to_store'  data-index='{{index}}' data-store_name='{{item.name}}'  data-store_img='{{item.src}}'
-       data-store_desc='{{item.desc}}'  data-store_sales='{{item.sales}}'  data-store_initial_price='{{item.initial_price}}'  data-store_distribution_price='{{item.distribution_price}}' data-store_id='{{item.store_id}}'>
+       data-store_desc='{{item.desc}}'  data-store_sales='{{item.sales}}'  data-store_initial_price='{{item.initial_price}}'  data-store_distribution_price='{{item.distribution_price}}' data-store_id='{{item.store_id}}' data-statues='{{item.statues}}' >
         <view class="restaurants-list">
           <view class="restaurants-info-image">
             <image src="{{item.src}}" class="restaurants-image" />
