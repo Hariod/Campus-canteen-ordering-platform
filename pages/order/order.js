@@ -30,7 +30,7 @@ Page({
   onShow: function() {
     var log=this.data.logined;
     if (app.appData.userinfo == null) {
-      this.setData({logined:false})
+      this.setData({logined:true})
       console.log("显示1");
     }
     else {
@@ -39,36 +39,35 @@ Page({
     }
    
     var that = this;
-    // wx.request({
-    //   url: 'https://www.easy-mock.com/mock/5bd9a4325c4a0e732444a994/order',
-    //   data: {
-    //     x: '',
-    //     y: ''
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success(res) {
-
-    //     console.log(res.data)
-    //     that.setData({ arr: res.data.order.arr })
-    //   },
-    // })
     wx.request({
-      url: 'https://www.leijiangmm.xyz/userOrder',
+      url: 'https://www.easy-mock.com/mock/5bd9a4325c4a0e732444a994/order',
       data: {
-        username: 'app.appData.userinfo.username',
+        x: '',
+        y: ''
       },
       header: {
-        'content-type': 'application/x-www-form-urlencoded' // 默认值
+        'content-type': 'application/json' // 默认值
       },
-      method:"POST",
       success(res) {
-        console.log(res)
-        console.log(app.appData.userinfo.username)
-        // that.setData({arr:res.data.order.arr })
+        console.log(res.data)
+        that.setData({ arr: res.data.order.arr })
       },
     })
+    // wx.request({
+    //   url: 'https://www.leijiangmm.xyz/userOrder',
+    //   data: {
+    //     username: 'app.appData.userinfo.username',
+    //   },
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded' // 默认值
+    //   },
+    //   method:"POST",
+    //   success(res) {
+    //     console.log(res)
+    //     console.log(app.appData.userinfo.username)
+    //     // that.setData({arr:res.data.order.arr })
+    //   },
+    // })
     // console.log(1111)
     // console.log(app.appData.userinfo.username)
   },
@@ -161,8 +160,8 @@ Page({
     })
   },
   againClick: function() {
-    wx.redirectTo({
-      url: '',
+    wx.navigateTo({
+      url: '../store/payed/payed',
     })
   },
   loginbtnClick:function(){

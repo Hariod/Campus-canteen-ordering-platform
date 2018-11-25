@@ -2,27 +2,27 @@
 
 <!-- 第一笔订单 -->
 <view class="container" wx:if="{{logined==true}}">
-<view class="order" bindtap='orderClick' wx:for="{{arr}}" wx:key="{{key}}">
-  <view class="order_top">
-    <image src="{{item.img}}"></image>
-    <view class="nameTimer">
+  <view class="order" bindtap='orderClick' wx:for="{{arr}}" wx:key="{{key}}">
+    <view class="order_top">
+      <image src="{{item.img}}"></image>
+      <view class="nameTimer">
         <view class="store_name">{{item.store_name}}</view>
         <view class="order_time">{{item.order_time}}</view>
         <view class="order_status">订单已送达</view>
+      </view>
+    </view>
+    <view class="order_center">
+      <view class="order_vegetable">{{item.order_vegetable}}</view>
+      <view calss="order_cost">￥{{item.cost}}</view>
+    </view>
+    <view class="order_bottom">
+      <text class="order_delete" catchtap='deleteClick' data-index='{{index}}'>删除此单</text>
+      <text class="order_again" catchtap='againClick'>再来一单</text>
     </view>
   </view>
-  <view class="order_center">
-    <view class="order_vegetable">{{item.order_vegetable}}</view>
-    <view calss="order_cost">￥{{item.cost}}</view>
-  </view>
-  <view class="order_bottom">
- <text class="order_delete" catchtap='deleteClick'  data-index='{{index}}'>删除此单</text>
-  <text class="order_again" catchtap='againClick'>再来一单</text>  
-  </view>
-</view>
 </view>
 
 <view class="unlogin" wx:if="{{logined==false}}">
-<view class="txt">您还没有登录，请登录后查看订单</view>
-<button class="login-btn" bindtap='loginbtnClick'>登录</button>
+  <view class="txt">您还没有登录，请登录后查看订单</view>
+  <button class="login-btn" bindtap='loginbtnClick'>登录</button>
 </view>

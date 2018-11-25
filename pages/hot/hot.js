@@ -5,14 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    arr:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    wx.request({
+      url: 'https://www.easy-mock.com/mock/5bd9a4325c4a0e732444a994/order',
+      success(res) {
+        console.log(res.data.hot)
+        that.setData({arr:res.data.hot.arr })
+      },
+    })
   },
 
   /**
@@ -62,5 +69,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  foodclick:function(){
+    wx.navigateTo({
+      url: '../store/payed/payed',
+    })
   }
 })

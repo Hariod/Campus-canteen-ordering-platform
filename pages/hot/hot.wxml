@@ -1,2 +1,10 @@
-<!--pages/hot/hot.wxml-->
-<text>pages/hot/hot.wxml</text>
+<view class="order" bindtap='orderClick' wx:for="{{arr}}" wx:key="{{key}}">
+<view class="food" bindtap='foodclick'>
+  <image src="{{item.food_img}}" style='width:50px;height:50px'></image>
+  <view>
+    <view class="name">{{item.food_name}}</view>
+    <view class="count" style='font-size:30rpx'>月售:{{item.food_number}}</view>
+    <view class="price">￥{{item.food_price}}</view>
+  </view>
+</view>
+</view>
