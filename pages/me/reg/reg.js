@@ -75,5 +75,13 @@ Page({
   },
  passwordInput: function () {
    this.setData({password:event.datail.value})
+  },
+  yzmClick:function(){
+    wx.request({
+      url: 'http://v.juhe.cn/sms/send?mobile=15607176221&tpl_id=67328&tpl_value=%23code%23%3D654654&key=12cf69a653f808caf5962be69772bffd',
+      success(res) {
+        console.log(res)
+      },
+    })
   }
 })
