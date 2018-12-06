@@ -1,6 +1,7 @@
 {
   "pages":[
    "pages/home/home",
+   "pages/store/payed1/payed1",
     "pages/store/store",
     "pages/hot/hot",
     "pages/order/order",
@@ -9,7 +10,6 @@
     "pages/me/login/login",
     "pages/me/user/user",
     "pages/store/payed/payed",
-    "pages/store/pay/pay",
     "pages/store/pay_success/pay_success",
     "pages/location/location",
     "pages/location/rece_address/rece_address"

@@ -1,12 +1,13 @@
-var app=getApp();
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    username:null,
-    password:null,
+    username: null,
+    password: null,
+    repassword: null,
   },
 
   /**
@@ -64,24 +65,49 @@ Page({
   onShareAppMessage: function () {
     console.log("--onShareAppMessag-");
   },
-  regbtnClick:function(){
-    // app.appdata.userinfo={username:this.data.username,password:this.data.password} 
-    wx.redirectTo({
-      url: '../login/login',
-    })
-  },
-  usernameInput:function(){
-    this.setData({username: event.datail.value})
-  },
- passwordInput: function () {
-   this.setData({password:event.datail.value})
-  },
-  yzmClick:function(){
+  regbtnClick: function () {
+    var that = this;
     wx.request({
-      url: 'http://v.juhe.cn/sms/send?mobile=15607176221&tpl_id=67328&tpl_value=%23code%23%3D654654&key=12cf69a653f808caf5962be69772bffd',
+      url: 'https://www.leijiangmm.xyz/userSignIn', //仅为示例，并非真实的接口地址
+      data: {
+        username: that.data.username,
+        password: that.data.password
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' // 默认值
+      },
+      method: "POST",
       success(res) {
+        console.log("注册");
         console.log(res)
+        // 在此处检验密码
+        // if (that.data.username == res.data.data.ousername && that.data.password == res.data.data.opassword)
+        if (that) {
+          wx.redirectTo({
+            url: '../login/login',
+          })
+        } else {  
+          console.log("两次密码不同");
+        }
       },
     })
+
+  },
+  usernameInput: function (event) {
+    // console.log(event);
+    this.setData({
+      username: event.detail.value
+    });
+  },
+  passwordInput: function (event) {
+    this.setData({
+      password: event.detail.value
+    });
+  },
+  repasswordInput: function (event) {
+    this.setData({
+      repassword: event.detail.value
+    });
+
   }
 })

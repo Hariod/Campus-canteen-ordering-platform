@@ -1,0 +1,125 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="tabNav">外卖配送</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="tabNav">到店自取</view>
+  </view>
+  <swiper current="{{currentTab}}" duration="1000">
+
+    <swiper-item catchtouchmove="stopTouchMove" style="height:100%" class="first-swiper-item">
+      <!-- <view id="wmps"> -->
+      <view class='adress' bindtap='adressClick'>
+        <image src="../../image/map2.png"></image>
+        <view wx:if="{{select_address==false}}">选择地址</view> 
+       <view wx:if="{{select_address==true}}">
+        <view>{{payed_address}}{{payed_address_detail}}</view>
+        <view>{{payed_name}}-{{payed_sex}}-{{payed_tel}}</view>
+        </view>
+      </view>
+      <view class="launch" style="border:none">
+        <image src="../../image/map2.png"></image>
+        <view>立即送出</view>
+      </view>
+      <!-- </view> -->
+    </swiper-item>
+
+    <swiper-item catchtouchmove="stopTouchMove" id="ddzq" style="height:100%" class="twice-swiper-item">
+      <!-- <view id="ddzq"> -->
+      <view>
+        <view class="store_adress" style='font-size:14px;color:#444'>商家地址</view>
+        <view class="store_address">武汉市文化学院文景园食堂1楼14号窗口</view>
+      </view>
+
+      <view class="time-phone">
+
+        <view>
+          <text style='font-size:12px;color:#888'>自取时间</text>
+          <view>
+            <input bindinput="timeInput" style='font-size:18px'></input>
+            <image src="../../image/huise@2x.png"></image>
+          </view>
+        </view>
+
+
+        <view style="border:none;margin-left:10px;">
+          <text style='font-size:12px;color:#888'>预留电话</text>
+          <view>
+            <input bindinput="phoneInput" style='font-size:14px'></input>
+            <image src="../../image/huise@2x.png"></image>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+  </swiper>
+  <view class="detail_center">
+    <view class="store_name">
+      <image src="{{store_info.store_img}}" class="store_smallimg"></image>
+      <text>{{store_info.store_name}}</text>
+    </view>
+
+    <!-- 原来项目的布局 -->
+    <view class="order">
+      <view class='order_list'>
+        <view class='order_nav'>
+          <view>商品</view>
+          <view style='margin-left:18%;'>数量</view>
+          <view>金额</view>
+        </view>
+        <view>
+          <view class="list">
+            <!-- wx:for="{{orderList}}"  wx:key="orderList" -->
+            <view class="item" wx:for="{{cartList.list}}" wx:key="order_detail" wx:for-index="idx" wx:for-item="itemName">
+              <view class="name ellipsis">{{itemName.name}}</view>
+              <!-- <view class="num">{{itemName.dish_per_price}}</view> -->
+              <view class="num" style='margin-left:7px'>{{itemName.num}}</view>
+              <view class='order_list_price' style='margin-left:10px'>
+                <view class='per_symble'>￥</view>
+                <view class='per_price'>{{itemName.price}}</view>
+              </view>
+            </view>
+            <!-- 分割线 -->
+            <view ></view>
+            <view class='footer'>
+              <view class="cost">总量：
+                <span>{{cartList.total_count}}</span>
+              </view>
+              <view class='cost_total'>合计：
+                <span>￥{{cartList.total_price}}</span>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='l'></view>
+    <view class='line'></view>
+    <view class='r'></view>
+    <!-- /原来项目的布局 -->
+    <!-- <view class="order_content" wx:for="{{cartList.list}}" wx:key="{{key}}">
+      <view class="order_content_detail">
+        <text class="food_name">{{item.name}}</text>
+        <text class="food_number">x{{item.num}}</text>
+        <text class="food_price">￥{{item.price}}</text>
+      </view>
+    </view> -->
+    <view class="discount">
+      <text>满减优惠</text>
+      <text>-￥{{store_info.discount}}</text>
+    </view>
+    <view class="summarize">
+      <view style='color:#34AAFF'>
+        <image src="../../image/kfxt.png"></image>联系商家</view>
+      <text>实付￥{{cartList.total_price-store_info.discount}}</text>
+    </view>
+  </view>
+</view>
+
+
+<view class='submit' bindtap='to_pay'>
+  <view class='submit_font'>
+    <text>微信支付
+  </text>
+    <text>￥{{cartList.total_price-store_info.discount}}</text>
+  </view>
+
+</view>

@@ -3,6 +3,7 @@ var temp_location = "获取位置";
 var temp_restaurant = [];
 var temp_obj_restauran = {};
 var temp_adver_img = [];
+var temp_user_info = {};
 Page({
   /**
    * 页面的初始数据
@@ -90,6 +91,8 @@ Page({
         name: "新商家",
         src: "/pages/image/8.png"
       }],
+    },
+    user_info: {
     },
     selected: 0,
     mask1Hidden: true,
@@ -191,10 +194,13 @@ Page({
     // console.log(e);
     // wx.setStorageSync("store_info", e.currentTarget.dataset);
     wx.setStorageSync("store_id", e.currentTarget.dataset.store_id)
-
-
+    // console.log(temp_user_info)
+    var temp_data = {
+      store_info: e.currentTarget.dataset,
+      uer_info: temp_user_info
+    }
     wx.navigateTo({
-      url: '/pages/store/store?store_info=' + JSON.stringify(e.currentTarget.dataset),
+      url: '/pages/store/store?store_info=' + JSON.stringify(temp_data),
 
     })
   },
@@ -203,6 +209,34 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    // 请求用户信息
+    wx.request({
+      url: 'https://www.leijiangmm.xyz/userLogin',
+      method: "POST",
+      data: {
+        username: "123456",
+        password: "12345"
+      },
+      success: function (res) {
+        // console.log(res)
+        temp_user_info = res.data;
+      }
+    })
+
+    // console.log(that.data.user_info)
+
+    // wx.request({
+    //   url: 'https://www.leijiangmm.xyz/userOrder',
+
+    //   method: "POST",
+    //   data: {
+    //     order_phone: "12345",
+
+    //   },
+    //   success: function (res) {
+    //     console.log(res);
+    //   }
+    // })
 
     if (wx.getStorageSync('location')) {
       temp_location = wx.getStorageSync('location')
@@ -220,7 +254,6 @@ Page({
         timingFunc: 'easeIn'
       }
     })
-    var that = this;
     // 轮播图
     wx.request({
       url: "https://www.leijiangmm.xyz/adver_img",
@@ -243,27 +276,18 @@ Page({
         })
       }
     });
-    // wx.request({
-    //   url: "https://www.easy-mock.com/mock/5bd082811650950db51030fe/restaurant",
-    //   method: "GET",
-    //   success: function(res) {
 
-    //     that.setData({
-    //       restaurant: res.data.data.restaurant,
-    //     })
-    //   }
-    // });
     wx.request({
       url: "https://www.leijiangmm.xyz/allstore",
       method: "GET",
       success: function (res) {
-        // console.log(res.data)
+        console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
 
           var temp_src1 = '' + res.data[i].store_picpath
           var temp_src3 = temp_src1.substring(7).replace("\\", "/");
           var temp_src = "https://www.leijiangmm.xyz" + temp_src3;
-
+          // 可加满减优惠
           temp_obj_restauran = {
             "store_id": res.data[i].id,
             "name": res.data[i].store_name,
@@ -272,7 +296,8 @@ Page({
             "initial_price": res.data[i].store_lowprice,
             "distribution_price": res.data[i].store_deli,
             "desc": res.data[i].store_desc,
-            "statues": res.data[i].store_status
+            "statues": res.data[i].store_status,
+            "store_discount": res.data[i].store_discount
           };
           temp_restaurant[i] = temp_obj_restauran;
         }

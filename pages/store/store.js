@@ -14,17 +14,25 @@ Page({
     payDesc: '',
     deliveryPrice: 4, //配送費
     fold: true,
+    user_info: {},
     selectFoods: [{
       price: 20,
       count: 2
     }],
+    cartList:
+      {
+        total_price: 0,
+        total_count: 0,
+        list: {}
+      },
     cartShow: 'none',
     status: 0,
     store_status: 1,
-    store_status_string: '正在营业',
+    store_status_string: '在营业',
     classifySeleted: '',
     header_show: true,
     store_info: {},
+    user_info: {},
     height: 0, // scroll-wrap 的高度，这个高度是固定的
     inner_height: 0, // inner-wrap 的高度，这个高度是动态的
     scroll_top: 0, // 滚动到位置。
@@ -43,14 +51,16 @@ Page({
     })
     // console.log(this.data.toView);
   },
+
+
+
+
+
   onGoodsScroll2: function (e) {
+
+
   },
   onGoodsScroll: function (e) {
-
-
-
-
-
 
     // 联动左侧导航
     if (e.detail.scrollTop > 10 && !this.data.scrollDown) {
@@ -90,28 +100,38 @@ Page({
   },
   //移除商品
   decreaseCart: function (e) {
+    var food_id = e.currentTarget.dataset.food_id;
     var index = e.currentTarget.dataset.itemIndex;
     var parentIndex = e.currentTarget.dataset.parentindex;
     this.data.goods[parentIndex].foods[index].Count--
-    var num = this.data.goods[parentIndex].foods[index].Count--;
+    var num = this.data.goods[parentIndex].foods[index].Count;
     var mark = 'a' + index + 'b' + parentIndex
-    var name = this.data.goods[parentIndex].foods[index].name;
-    var price = this.data.goods[parentIndex].foods[index].price;
+    var name = this.data.goods[parentIndex].foods[index].food_name;
+    var price = this.data.goods[parentIndex].foods[index].food_price;
     var obj = {
       price: price,
       num: num,
       mark: mark,
       name: name,
       index: index,
-      parentIndex: parentIndex
+      parentIndex: parentIndex,
+      food_id: food_id
     };
     var carArray1 = this.data.carArray.filter(item => item.mark != mark);
     carArray1.push(obj);
+    if (num == 0) {
+      delete this.data.cartList.list[food_id];
+    } else {
+      this.data.cartList.list[food_id].num = num;
+    }
 
+    // console.log(this.data.cartList);
     this.setData({
+      cartList: this.data.cartList,
       carArray: carArray1,
       goods: this.data.goods
     })
+    // console.log(this.data.carArray)
     this.calTotalPrice()
     this.setData({
       payDesc: this.payDesc(),
@@ -133,47 +153,57 @@ Page({
     }
   },
   decreaseShopCart: function (e) {
-    // console.log('1');
+    // console.log(e);
     this.decreaseCart(e);
   },
+
   //添加到购物车
+
+
+
   addCart(e) {
 
-    console.log(e)
-    console.log(this.data.goods)
+    // console.log(e)
+    // console.log(this.data.goods)
+    var food_id = e.currentTarget.dataset.food_id;
     var index = e.currentTarget.dataset.itemIndex;
     var parentIndex = e.currentTarget.dataset.parentindex;
-    //  未知的count为商品销售量？？
-
+    this.data.goods[parentIndex].foods[index].Count++;
     var mark = 'a' + index + 'b' + parentIndex
     var price = this.data.goods[parentIndex].foods[index].food_price;
-
-    var num = this.data.goods[parentIndex].foods[index].Count++;
-    console.log(this.data.goods[parentIndex].foods[index].Count)
+    var num = this.data.goods[parentIndex].foods[index].Count;
     var name = this.data.goods[parentIndex].foods[index].food_name;
+
+
     var obj = {
       price: price,
       num: num,
       mark: mark,
       name: name,
       index: index,
-      parentIndex: parentIndex
+      parentIndex: parentIndex,
+      food_id: food_id
     };
     var carArray1 = this.data.carArray.filter(item => item.mark != mark)
     carArray1.push(obj)
 
+    this.data.cartList.list[food_id] = obj;
+    // console.log(this.data.cartList);
     // console.log(carArray1);
     this.setData({
+      cartList: this.data.cartList,
       carArray: carArray1,
-      // goods: this.data.goods
+      goods: this.data.goods
     })
-    console.log(this.data.carArray)
+    // console.log(this.data.goods);
+    // console.log(this.data.carArray)
     this.calTotalPrice();
     this.setData({
       payDesc: this.payDesc()
     })
   },
   addShopCart: function (e) {
+    // console.log(e);F
     this.addCart(e);
   },
   //计算总价
@@ -185,18 +215,28 @@ Page({
       totalPrice += carArray[i].price * carArray[i].num;
       totalCount += carArray[i].num
     }
+    this.data.cartList.total_price = totalPrice;
+    this.data.cartList.total_count = totalCount;
     this.setData({
       totalPrice: totalPrice,
       totalCount: totalCount,
-      //payDesc: this.payDesc()
+      cartList: this.data.cartList
     });
   },
-  //差几元起送
+
   submit_pay: function (e) {
     // console.log(e);
+
+    var data = {
+      cartList: this.data.cartList,
+      store_info: this.data.store_info,
+      uer_info: this.data.user_info
+    }
+    // console.log(this.data.user_info)
     wx.navigateTo({
-      url: '/pages/store/payed/payed',
+      url: '/pages/store/payed1/payed1?order_info=' + JSON.stringify(data),
     })
+
   },
   payDesc() {
     if (this.data.totalPrice === 0) {
@@ -220,13 +260,24 @@ Page({
       url: '../goods/pay/pay?resultType=' + resultType
     })
   },
-  // empty:function(e){
-  //   this.setData({
 
-  //       carArray: none,
+  empty: function (e) {
 
-  //   })
-  // },
+    this.data.cartList.list = {}
+
+    for (var i = 0; i < this.data.goods.length; i++) {
+      for (var j = 0; j < this.data.goods[i].foods.length; j++) {
+        this.data.goods[i].foods[j].Count = 0;
+      }
+    }
+
+    this.setData({
+      cartList: this.data.cartList,
+      totalCount: 0,
+      totalPrice: 0,
+      goods: this.data.goods
+    })
+  },
   //彈起購物車
   toggleList: function () {
     if (!this.data.totalCount) {
@@ -256,16 +307,18 @@ Page({
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
 
+
     if (options) {
+
       var that = this;
       let data = JSON.parse(options.store_info)
+      // console.log(data)
       that.setData({
-        store_info: data
+        store_info: data.store_info,
+        user_info: data.uer_info
       })
-      // console.log(data);
-      // console.log(that.data.store_info);
     }
-
+    // console.log(this.data.user_info)
     var that = this;
     var temp_store_info = wx.getStorageSync("store_id");
     // console.log(temp_store_info);
@@ -285,7 +338,7 @@ Page({
       method: 'POST',
       success: function (res) {
 
-        console.log(res.data)
+        // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
           for (var j = 0; j < res.data[i].foods.length; j++) {
             // console.log(res.data[i].foods[j].food_picpath);
@@ -293,7 +346,7 @@ Page({
             var temp_src3 = temp_src1.substring(7).replace("\\", "/");
             var temp_src = "https://www.leijiangmm.xyz" + temp_src3;
             var temp_foodss = {
-              "id": res.data[i].id,
+              "id": res.data[i].foods[j].id,
               "food_desc": res.data[i].foods[j].food_desc,
               "food_name": res.data[i].foods[j].food_name,
               "food_picpath": temp_src,
@@ -312,8 +365,7 @@ Page({
 
 
         }
-        // console.log(temp_foods);
-        // console.log(temp_goods);
+
 
 
         that.setData({
