@@ -25,7 +25,7 @@ Page({
 
     var that = this;
     let data = JSON.parse(options.order_info)
-
+    console.log(data)
     that.data.cartList = data.cartList;
     that.data.store_info = data.store_info;
     that.data.user_info = data.uer_info;
@@ -35,7 +35,7 @@ Page({
       store_info: that.data.store_info,
       user_info: that.data.user_info
     })
-
+console.log(this.data.cartList);
   },
 
   /**

@@ -104,12 +104,12 @@
     </view> -->
     <view class="discount">
       <text>满减优惠</text>
-      <text>-￥{{store_info.discount}}</text>
+      <text>-￥{{store_info.store_distribution_price}}</text>
     </view>
     <view class="summarize">
       <view style='color:#34AAFF'>
         <image src="../../image/kfxt.png"></image>联系商家</view>
-      <text>实付￥{{cartList.total_price-store_info.discount}}</text>
+      <text>实付￥{{cartList.total_price-store_info.store_distribution_price}}</text>
     </view>
   </view>
 </view>
@@ -119,7 +119,7 @@
   <view class='submit_font'>
     <text>微信支付
   </text>
-    <text>￥{{cartList.total_price-store_info.discount}}</text>
+    <text>￥{{cartList.total_price-store_info.store_distribution_price}}</text>
   </view>
 
 </view>

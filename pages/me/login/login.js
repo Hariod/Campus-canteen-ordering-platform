@@ -98,8 +98,8 @@ Page({
     wx.request({
       url: 'https://www.leijiangmm.xyz/UserLogin', //仅为示例，并非真实的接口地址
       data: {
-        username: 'that.data.username',
-        password: 'that.data.password'
+        username: that.data.username,
+        password: that.data.password
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded' // 默认值
@@ -108,14 +108,14 @@ Page({
       success(res) {
         console.log("登录");
         console.log(res)
-        // 在此处检验密码
-        // if (that.data.username == res.data.data.ousername && that.data.password == res.data.data.opassword)
-        if (that) {
+        if (res.data==null) {
+          console.log("密码错误");
+        } else {
           wx.switchTab({
             url: '/pages/me/user/user',
+            
           })
-        } else {
-          console.log("密码错误");
+         
         }
       },
     })
