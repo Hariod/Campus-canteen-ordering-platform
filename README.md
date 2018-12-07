@@ -3,28 +3,28 @@
 #目录结构
 
 
-|--libs
-|--pages
-	|--common   各页面共公部分
-	|--home		首页
-	|--hot		热销
-	|--image    项目图片
-	|--location 	地址
-		|--rece_address		选择地址
-	|--me		我的
-		|--login	登录
-		|--reg		注册
-		|--user		用户
-	|--order	订单
-		|--order_detail		订单详情
-	|--store		商店
-		|--pay		支付页面第一版
-		|--payed	支付页面第二版
-		|--pay_success		支付成功
-|--utils
-|--app.js
-|--app.json
-|--app.wxss
-|--project.config.json
+|--libs<br/>
+|--pages<br/>
+	|--common   各页面共公部分<br/>
+	|--home		首页<br/>
+	|--hot		热销<br/>
+	|--image    项目图片<br/>
+	|--location 	地址<br/>
+		|--rece_address		选择地址<br/>
+	|--me		我的<br/>
+		|--login	登录<br/>
+		|--reg		注册<br/>
+		|--user		用户<br/>
+	|--order	订单<br/>
+		|--order_detail		订单详情<br/>
+	|--store		商店<br/>
+		|--pay		支付页面第一版<br/>
+		|--payed	支付页面第二版<br/>
+		|--pay_success		支付成功<br/>
+|--utils<br/>
+|--app.js<br/>
+|--app.json<br/>
+|--app.wxss<br/>
+|--project.config.json<br/>
 
 
