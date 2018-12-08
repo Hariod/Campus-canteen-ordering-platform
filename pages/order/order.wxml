@@ -1,6 +1,5 @@
-<!--pages/order/order.wxml-->
-
 <!-- 第一笔订单 -->
+
 <view class="container" wx:if="{{logined==true}}">
   <view class="order" bindtap='orderClick' wx:for="{{arr}}" wx:key="{{key}}">
     <view class="order_top">
@@ -21,8 +20,9 @@
     </view>
   </view>
 </view>
-
-<view class="unlogin" wx:if="{{logined==false}}">
-  <view class="txt">您还没有登录，请登录后查看订单</view>
-  <button class="login-btn" bindtap='loginbtnClick'>登录</button>
+<view class="page">
+  <view class="unlogin" wx:if="{{logined==false}}">
+    <view class="txt">您还没有登录，请登录后查看订单</view>
+    <button class="login-btn" bindtap='loginbtnClick'>登录</button>
+  </view>
 </view>

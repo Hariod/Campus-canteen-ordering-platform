@@ -32,7 +32,7 @@ Page({
   onShow: function () {
     var log = this.data.logined;
     if (app.appData.userinfo == null) {
-      this.setData({ logined:false })
+      this.setData({ logined:false})
       console.log("显示1");
     }
     else {
@@ -41,20 +41,6 @@ Page({
     }
 
     var that = this;
-    // wx.request({
-    //   url: 'https://www.easy-mock.com/mock/5bd9a4325c4a0e732444a994/order',
-    //   data: {
-    //     x: '',
-    //     y: ''
-    //   },
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success(res) {
-    //     console.log(res.data)
-    //     that.setData({ arr: res.data.order.arr })
-    //   },
-    // })
     wx.request({
       url: 'https://www.leijiangmm.xyz/userOrder',
       data: {

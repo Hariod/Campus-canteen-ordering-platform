@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 .item{
   flex-grow: 1;
@@ -28,10 +28,15 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 20rpx;
-  margin-left: 10px;
+  margin-left:5%;
 }
 .bottom{
   border-bottom:0px;
+}
+.bottom-info{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .login-item-info{
   font-size: 12px;
@@ -62,9 +67,6 @@
   color:white;
   border-radius: 0;
 
-}
-.login{
-  margin: 20px 100px;
 }
 .home{
   width: 20px;

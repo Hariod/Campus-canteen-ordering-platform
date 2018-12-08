@@ -28,7 +28,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 20rpx;
-  margin-left: 10px;
+  margin-left:5%;
 }
 .bottom{
   border-bottom:0px;

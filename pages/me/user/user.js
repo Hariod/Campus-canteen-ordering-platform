@@ -96,6 +96,11 @@ Page({
     wx.navigateTo({
       url: '../../location/location',
     })
+  },
+  seller:function(){
+    wx.navigateTo({
+      url: '../login/login',
+    })
   }
   //————————————————————地图————————————
   // map: function (e) {

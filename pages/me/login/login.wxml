@@ -1,40 +1,32 @@
 <view class="mcontainer">
-
-  <!-- <view class="item">
-    <image src="/image/logo.png" class="image"/>
-  </view> -->
-
   <view class="item">
     <view class="login-item">
       <view class="login-item-info">用户名(手机号)</view>
-      <view><input bindinput="usernameInput"></input></view>
+      <view>
+        <input bindinput="usernameInput"></input>
+      </view>
     </view>
   </view>
 
   <view class="item">
-   <view class="login-item">
-     <view class="login-item-info">密码</view>
+    <view class="login-item">
+      <view class="login-item-info">密码</view>
       <view class="login-pwd">
-       <input style="flex-grow:1" password="ture" bindinput='passwordInput'></input>
-      <text>忘记密码</text>
+        <input style="flex-grow:1" password="ture" bindinput='passwordInput'></input>
+        <text>忘记密码</text>
+      </view>
     </view>
-   </view>
   </view>
 
   <view class="item">
-   <view class="login-item bottom">
-    <button class="login-btn" bindtap='loginbtnClick'>登录</button>
-   </view>
+    <view class="login-item bottom">
+      <button class="login-btn" bindtap='loginbtnClick'>登录</button>
+    </view>
   </view>
 
   <view class="item bottom-info">
-    <navigator url='../reg/reg'>
-    <view class="login">没有账户?<text>注册</text></view>
-    </navigator>
-    <!-- <view class="wechat-icon">
-      <image src="../../image/wechat.jpg"></image>
-    </view> -->
+      <view class="login" bindtap='regClick'>没有账户?注册</view>
   </view>
   <image src="../../image/shouye-fill@2x.png" class="home" bindtap='homeClick'></image>
-  <text>返回首页</text>
+  <text bindtap='homeClick'>返回首页</text>
 </view>

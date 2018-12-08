@@ -142,5 +142,10 @@ Page({
     wx.switchTab({
       url: '../../home/home',
     })
+  },
+  regClick:function(){
+    wx.redirectTo({
+      url: '../reg/reg',
+    })
   }
 })
