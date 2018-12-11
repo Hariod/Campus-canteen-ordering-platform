@@ -1,23 +1,37 @@
 // pages/hot/hot.js
+var hot_information = {}
+var hot = []
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    arr:null,
+    arr: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var that = this;
     wx.request({
-      url: 'https://www.easy-mock.com/mock/5bd9a4325c4a0e732444a994/order',
+      url: 'https://www.leijiangmm.xyz/sellHot',
       success(res) {
-        console.log(res.data.hot)
-        that.setData({arr:res.data.hot.arr })
+        console.log(res.data)
+        for (var i = 0; i < res.data.length; i++) {
+          var img_src1 = '' + res.data[i].food_picpath;
+          var img_src3 =img_src1.substring(7).replace("\\", "/");
+          var img_src = "https://www.leijiangmm.xyz" + img_src3;
+          hot_information = {
+            "food_name": res.data[i].food_name,
+            "food_number": res.data[i].food_sold,
+            "food_price": res.data[i].food_price,
+            "food_img":img_src,
+          }
+          hot[i] = hot_information;
+        }
+        that.setData({ arr: hot });
       },
     })
   },
@@ -70,7 +84,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  foodclick:function(){
+  foodclick: function () {
     wx.navigateTo({
       url: '../store/payed/payed',
     })

@@ -249,17 +249,17 @@ Page({
     }
   },
   //結算
-  pay() {
-    if (this.data.totalPrice < this.data.minPrice) {
-      return;
-    }
-    // window.alert('支付' + this.totalPrice + '元');
-    //确认支付逻辑
-    var resultType = "success";
-    wx.redirectTo({
-      url: '../goods/pay/pay?resultType=' + resultType
-    })
-  },
+  // pay() {
+  //   if (this.data.totalPrice < this.data.minPrice) {
+  //     return;
+  //   }
+  //   // window.alert('支付' + this.totalPrice + '元');
+  //   //确认支付逻辑
+  //   var resultType = "success";
+  //   wx.redirectTo({
+  //     url: '../goods/pay/pay?resultType=' + resultType
+  //   })
+  // },
 
   empty: function (e) {
 

@@ -121,5 +121,4 @@
   </text>
     <text>￥{{cartList.total_price-store_info.store_distribution_price}}</text>
   </view>
-
 </view>

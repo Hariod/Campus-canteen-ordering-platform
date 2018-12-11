@@ -111,9 +111,10 @@ Page({
                 duration: 1500,
                 success:function(){
                   setTimeout(function(){
-                    wx.redirectTo({
-                      url: '../login/login',
-                    })
+                    // wx.redirectTo({
+                    //   url: '../login/login',
+                    // })
+                    wx.navigateBack()
                   },1500)
                  
                 }

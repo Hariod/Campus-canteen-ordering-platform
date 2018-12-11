@@ -1,14 +1,14 @@
 <!--pages/order/order_detail/order_detail.wxml-->
 <view class="container">
   <view class="detail_top">
-    <image src="http://i1.umei.cc/uploads/tu/201806/9999/02218db8bd.jpg" class="store_bigimg"></image>
+    <image src="{{store_img}}" class="store_bigimg"></image>
     <text>外卖订单</text>
   </view>
 
   <view class="detail_center">
     <view class="store_name">
-      <image src="http://i1.umei.cc/uploads/tu/201806/9999/02218db8bd.jpg" class="store_smallimg"></image>
-      <text>1号店铺</text>
+      <image src="{{store_img}}" class="store_smallimg"></image>
+      <text>{{store_name}}</text>
     </view>
     <view class="order_content" wx:for="{{arr}}" wx:key="{{key}}">
       <view class="order_content_detail">
@@ -24,7 +24,7 @@
     <view class="summarize">
       <view style='color:#34AAFF'>
         <image src="../../image/kfxt.png"></image>联系商家</view>
-      <text>实付￥79</text>
+      <text>实付￥{{cost}}</text>
     </view>
   </view>
 
@@ -53,7 +53,7 @@
     <view class="oi_content">
       <view>订单号:{{order_number}}</view>
       <view>支付方式:在线支付</view>
-      <view style="border:none"><text>下单时间:{{order_data}}—{{order_time}}</text></view>
+      <view style="border:none"><text>下单时间:{{order_time}}</text></view>
     </view>
   </view>
 </view>
