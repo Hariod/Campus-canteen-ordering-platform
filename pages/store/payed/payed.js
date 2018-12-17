@@ -30,7 +30,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           arr: res.data.order_detail.arr,
           discount: res.data.order_detail.discount,
@@ -43,12 +43,12 @@ Page({
         })
       },
       fail(res) {
-        console.log("获取订单详情信息失败");
+        // console.log("获取订单详情信息失败");
       }
     })
     var query = wx.createSelectorQuery();
     query.select('#wmps').boundingClientRect(function(rect) {
-      console.log(rect.height)
+      // console.log(rect.height)
       that.setData({
         height: rect.height + 'px'
       })
@@ -116,7 +116,7 @@ Page({
 
   },
   tabNav: function(e) {
-    console.log(e.target.dataset.current, 1111111, this.data.currentTab)
+    // console.log(e.target.dataset.current, 1111111, this.data.currentTab)
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -131,8 +131,8 @@ Page({
     return false;
   },
   imageLoad: function(e) {
-    console.log("图片加载");
-    console.log(e);
+    // console.log("图片加载");
+    // console.log(e);
   },
   adressClick: function(e) {
     wx.navigateTo({

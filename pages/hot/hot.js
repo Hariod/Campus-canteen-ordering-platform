@@ -1,15 +1,14 @@
 // pages/hot/hot.js
 var hot_information = {}
 var hot = []
+var app=getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
     arr: null,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -18,12 +17,13 @@ Page({
     wx.request({
       url: 'https://www.leijiangmm.xyz/sellHot',
       success(res) {
-        console.log(res.data)
+        // console.log(res.data);
         for (var i = 0; i < res.data.length; i++) {
           var img_src1 = '' + res.data[i].food_picpath;
           var img_src3 =img_src1.substring(7).replace("\\", "/");
           var img_src = "https://www.leijiangmm.xyz" + img_src3;
           hot_information = {
+            "foods_belong_store_id":res.data[i].foods_belong_store,
             "food_name": res.data[i].food_name,
             "food_number": res.data[i].food_sold,
             "food_price": res.data[i].food_price,
@@ -84,9 +84,13 @@ Page({
   onShareAppMessage: function () {
 
   },
-  foodclick: function () {
+  foodclick: function (event) {
+    // console.log(event.currentTarget.dataset.foods_belong_store_id);
+    app.appData.click_index=2;
+    console.log(app.appData.click_index);
+    wx.setStorageSync("food_store_id", event.currentTarget.dataset.foods_belong_store_id);
     wx.navigateTo({
-      url: '../store/payed/payed',
+      url: '../store/store',
     })
   }
 })

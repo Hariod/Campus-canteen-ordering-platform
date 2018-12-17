@@ -19,7 +19,7 @@ Page({
   // 重新选择收获地址
   toCleanOrder: function(e) {
     var that = this;
-    console.log(e);
+    // console.log(e);
     for (var i = 0; i < that.data.add_rece_address_list.length; i++) {
       if (i == e.currentTarget.dataset.index) {
         li[e.currentTarget.dataset.index].image = "../image/check.png"
@@ -157,8 +157,8 @@ Page({
       });
       var temp = wx.getStorageSync("new_receive_address_item_modify");
       var temp2 = wx.getStorageSync("new_receive_address_item_add");
-      console.log(temp);
-      console.log(temp2);
+      // console.log(temp);
+      // console.log(temp2);
       if (temp) {
         // console.log(temp);
         li[temp.index] = temp;

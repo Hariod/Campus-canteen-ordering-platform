@@ -1,4 +1,5 @@
 var index = 0;
+var app = getApp();
 // var last_index=2;
 var li = [{
   sex: "先生",
@@ -8,7 +9,7 @@ var li = [{
   img: "../../image/uncheck.png"
 }];
 var temp_new_receive_address = {};
-var detail_do_what=''
+var detail_do_what = ''
 Page({
   data: {
     name: "请填写您的姓名",
@@ -28,22 +29,22 @@ Page({
       address: '',
       address_detail: '',
       frequent_address: '',
-      image:'../image/uncheck.png',
-      index:0
+      image: '../image/uncheck.png',
+      index: 0
     }
 
   },
-  areaPickerBindchange: function(e) {
+  areaPickerBindchange: function (e) {
     this.setData({
       areaValue: e.detail.value
     })
   },
-  addrePickerBindchange: function(e) {
+  addrePickerBindchange: function (e) {
     this.setData({
       addreValue: e.detail.value
     })
   },
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     var warn = "";
     var that = this;
     var flag = false;
@@ -73,24 +74,45 @@ Page({
         [address_detail]: e.detail.value.door,
       })
       // console.log(that.data.new_receive_address);
-      if(detail_do_what=='modify'){
+      if (detail_do_what == 'modify') {
         wx.setStorageSync(
           "new_receive_address_item_modify", that.data.new_receive_address
         );
 
-      }else{
-        
+      } else {
+
         wx.setStorageSync(
           "new_receive_address_item_add", that.data.new_receive_address
         );
       }
-     
+
+      console.log(detail_do_what);
+      console.log(that.data.new_receive_address);
+      console.log(app.appData.userinfo.id);
+      wx.request({
+        url: 'https://www.leijiangmm.xyz/addUseraddress', //仅为示例，并非真实的接口地址
+        data: {
+          do_what: detail_do_what,
+          new_receive_address: that.data.new_receive_address,
+          id: app.appData.userinfo.id
+        },
+        // header: {
+        //   'content-type': 'application/x-www-form-urlencoded' // 默认值
+        // },
+        method: "POST",
+        success(res) {
+          console.log(res);
+
+        }
+      })
+
+      // console.log(that.data.new_receive_address)
       wx.showToast({
         title: '保存成功！',
       })
       wx.redirectTo({
         url: '../../location/location'
-      
+
       });
       // console.log("传过去的地址下标是多少？" + e.detail.value.addre)
     }
@@ -102,7 +124,7 @@ Page({
     }
 
   },
-  sex_choose: function(e) {
+  sex_choose: function (e) {
     //  console.log(e);
 
     var that = this;
@@ -122,7 +144,7 @@ Page({
     // console.log(that.data.new_receive_address);
 
   },
-  address_selected: function(e) {
+  address_selected: function (e) {
     // console.log(e);
     var that = this;
     var frequent_address = 'new_receive_address.frequent_address';
@@ -133,12 +155,12 @@ Page({
     // console.log(that.data.address_selected);
 
   },
-  openmap: function(e) {
+  openmap: function (e) {
     var that = this;
     //获取当前位置
     wx.getLocation({
       type: 'gcj02',
-      success: function(res) {
+      success: function (res) {
         var latitude = res.latitude
         var longitude = res.longitude
         var speed = res.speed
@@ -146,7 +168,7 @@ Page({
       }
     })
     wx.chooseLocation({
-      success: function(res) {
+      success: function (res) {
 
         var address = 'new_receive_address.address';
         that.setData({
@@ -168,28 +190,28 @@ Page({
       }
     })
   }
-  , 
+  ,
   onLoad: function (option) {
     var that = this;
     var do_what = wx.getStorageSync("do_what");
-    var temp_last_index=wx.getStorageSync("list_length");
+    var temp_last_index = wx.getStorageSync("list_length");
     // console.log(temp_last_index);
     // last_index = temp_last_index;
     detail_do_what = do_what;
-    var temp_index ='new_receive_address.index'
+    var temp_index = 'new_receive_address.index'
 
     that.setData({
       [temp_index]: temp_last_index
-    
+
     })
     // console.log(do_what);
-    if (do_what=="modify"){
-    
+    if (do_what == "modify") {
+
       var modify_data = wx.getStorageSync("modify_data");
-that.setData({
-  new_receive_address: modify_data,
-  choose_address: modify_data.address
-})
+      that.setData({
+        new_receive_address: modify_data,
+        choose_address: modify_data.address
+      })
       // console.log(that.data.new_receive_address)
     }
 

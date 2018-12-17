@@ -29,8 +29,8 @@ Page({
     // //获取头像和名字
     wx.getUserInfo({
       success: function (res) {
-        console.log(1);
-        console.log(res);
+        // console.log(1);
+        // console.log(res);
         var avatarUrl = 'userInfo.avatarUrl';
         var nickName = 'userInfo.nickName';
         that.setData({
@@ -102,45 +102,4 @@ Page({
       url: '../login/login',
     })
   }
-  //————————————————————地图————————————
-  // map: function (e) {
-  //   var that = this
-  //   var user_id = wx.getStorageSync('users').id
-  //   wx.chooseAddress({
-  //     success: function (res) {
-  //       console.log(res.userName)
-  //       console.log(res.postalCode)
-  //       console.log(res.provinceName)
-  //       console.log(res.cityName)
-  //       console.log(res.countyName)
-  //       console.log(res.detailInfo)
-  //       console.log(res.nationalCode)
-  //       console.log(res.telNumber)
-  //       var tel = res.telNumber
-  //       var address = res.countyName + res.detailInfo
-  //       var user_name = res.userName
-  //       app.util.request({
-  //         'url': 'entry/wxapp/UpdAdd',
-  //         'cachetime': '0',
-  //         data: { user_id: user_id, user_tel: tel, user_address: address, user_name: user_name },
-  //         success: function (res) {
-  //           console.log(res)
-  //         }
-  //       })
-  //     }
-
-  //   })
-  // },
-  // // 跳转小程序
-  // tzxcx: function (e) {
-  //   var appid = this.data.bqxx.tz_appid
-  //   console.log(appid)
-  //   wx.navigateToMiniProgram({
-  //     appId: appid,
-  //     success(res) {
-  //       // 打开成功
-  //       console.log(res)
-  //     }
-  //   })
-  // }
 })

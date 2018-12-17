@@ -4,6 +4,8 @@ var temp_restaurant = [];
 var temp_obj_restauran = {};
 var temp_adver_img = [];
 var temp_user_info = {};
+var temp_status = null;
+var app = getApp();
 Page({
   /**
    * 页面的初始数据
@@ -190,14 +192,19 @@ Page({
   to_store: function (e) {
     // console.log(e);
     var that = this;
+    app.appData.click_index=1
+    console.log(app.appData.click_index);
     // var store_info = that.data.restaurant[e.currentTarget.dataset.store_id];
     // console.log(e);
     // wx.setStorageSync("store_info", e.currentTarget.dataset);
     wx.setStorageSync("store_id", e.currentTarget.dataset.store_id)
     // console.log(temp_user_info)
+    if (app.appData.userinfo != null) {
+      temp_status = app.appData.userinfo
+    }
     var temp_data = {
       store_info: e.currentTarget.dataset,
-      uer_info: temp_user_info
+      uer_info: temp_status
     }
     wx.navigateTo({
       url: '/pages/store/store?store_info=' + JSON.stringify(temp_data),
@@ -208,36 +215,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(app.appData.userinfo);
     var that = this;
-    // 请求用户信息
-    wx.request({
-      url: 'https://www.leijiangmm.xyz/userLogin',
-      method: "POST",
-      data: {
-        username: "123456",
-        password: "12345"
-      },
-      success: function (res) {
-        // console.log(res)
-        temp_user_info = res.data;
-      }
-    })
-
-    // console.log(that.data.user_info)
-
-    // wx.request({
-    //   url: 'https://www.leijiangmm.xyz/userOrder',
-
-    //   method: "POST",
-    //   data: {
-    //     order_phone: "12345",
-
-    //   },
-    //   success: function (res) {
-    //     console.log(res);
-    //   }
-    // })
-
     if (wx.getStorageSync('location')) {
       temp_location = wx.getStorageSync('location')
       // console.log(temp_location);
@@ -245,7 +224,6 @@ Page({
     that.setData({
       location: temp_location
     })
-
     wx.setNavigationBarColor({
       frontColor: '#ffffff', // 必写项
       backgroundColor: '#1198f3', // 必写项
@@ -259,9 +237,6 @@ Page({
       url: "https://www.leijiangmm.xyz/adver_img",
       method: "GET",
       success: function (res) {
-        // console.log(res);
-
-
         for (var i = 0; i < res.data.length; i++) {
           var temp_src1 = '' + res.data[i].adver_picpath;
           var temp_src3 = temp_src1.substring(7).replace("\\", "/");
@@ -269,8 +244,6 @@ Page({
           var temp_adver_img_child = temp_src;
           temp_adver_img[i] = temp_adver_img_child;
         }
-
-
         that.setData({
           adver_img: temp_adver_img
         })
@@ -281,7 +254,7 @@ Page({
       url: "https://www.leijiangmm.xyz/allstore",
       method: "GET",
       success: function (res) {
-        console.log(res.data)
+        // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
 
           var temp_src1 = '' + res.data[i].store_picpath
@@ -321,6 +294,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    // console.log(app.appData.userinfo);
     var that = this;
     that.setData({
       location: temp_location

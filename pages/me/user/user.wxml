@@ -18,7 +18,6 @@
         <image src='../../image/shouhuodizhi@2x.png' class='center_map' style='height:50rpx;'></image>
         <view>收货地址</view>
       </view>
-      <!-- <image src='../images/Path@2x.png' class='center_img'></image> -->
     </view>
   </view>
 
@@ -28,7 +27,6 @@
         <image src='../../image/dianpu-fill@2x.png' class='center_map'></image>
         <view>成为商家</view>
       </view>
-      <!-- <image src='../images/Path@2x.png' class='center_img'></image> -->
     </view>
   </view>
 

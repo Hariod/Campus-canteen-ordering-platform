@@ -35,12 +35,12 @@ Page({
       this.setData({
         logined: false
       })
-      console.log("显示1");
+      // console.log("显示1");
     } else {
       this.setData({
         logined: true
       })
-      console.log("显示2");
+      // console.log("显示2");
     }
 
     var that = this;
@@ -54,7 +54,7 @@ Page({
       },
       method: "POST",
       success(res) {
-        console.log(res.data)
+        // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
           var img_src1 = '' + res.data[i].path;
           var img_src3 = img_src1.substring(7).replace("\\", "/");
@@ -79,7 +79,7 @@ Page({
           arr: order
         });
         app.appData.order=order
-        console.log(app.appData.order)
+        // console.log(app.appData.order)
       },
     })
   },
@@ -121,23 +121,23 @@ Page({
   orderClick: function(e) {
     var index = e.currentTarget.dataset.index
     app.appData.order_index =index
-    console.log(app.appData.order_index)
+    // console.log(app.appData.order_index)
     wx.navigateTo({
       url: 'order_detail/order_detail',
     })
   },
   deleteClick: function(e) {
-    console.log(e);
+    // console.log(e);
     var that = this
     var index = e.currentTarget.dataset.index
-    console.log(order[index].id)
+    // console.log(order[index].id)
     wx.showModal({
       title: '提示',
       content: '删除订单么,删除后不可恢复哦~',
       confirmColor: "#1daef2",
       success: function(res) {
         if (res.confirm) {
-          console.log('用户点击确定' + index)
+          // console.log('用户点击确定' + index)
           var list = that.data.arr;
           wx.request({
             url: 'https://www.leijiangmm.xyz/delUserOrder',
@@ -150,7 +150,7 @@ Page({
             method: "POST",
             cachetime: '0',
             success: function(res) {
-              console.log(res)
+              // console.log(res)
               if (res.data == 1) {
                 wx.showToast({
                   title: '删除成功',
@@ -171,7 +171,7 @@ Page({
             },
           })
         } else if (res.cancel) {
-          console.log('用户点击取消')
+          // console.log('用户点击取消')
         }
       }
     })

@@ -1,3 +1,4 @@
+var app = getApp()
 var old_scrollTop = 0;
 var temp_goods = [];
 var temp_foods = [];
@@ -19,12 +20,11 @@ Page({
       price: 20,
       count: 2
     }],
-    cartList:
-      {
-        total_price: 0,
-        total_count: 0,
-        list: {}
-      },
+    cartList: {
+      total_price: 0,
+      total_count: 0,
+      list: {}
+    },
     cartShow: 'none',
     status: 0,
     store_status: 1,
@@ -38,10 +38,10 @@ Page({
     scroll_top: 0, // 滚动到位置。
     start_scroll: 0, // 滚动前的位置。
     touch_down: 0,
-    store_id: '' // 触摸时候的 Y 的位置
+    store_id:null
   },
 
-  selectMenu: function (e) {
+  selectMenu: function(e) {
     // console.log(e)
 
     var index = e.currentTarget.dataset.itemIndex;
@@ -51,41 +51,26 @@ Page({
     })
     // console.log(this.data.toView);
   },
-
-
-
-
-
-  onGoodsScroll2: function (e) {
-
-
-  },
-  onGoodsScroll: function (e) {
-
+  onGoodsScroll2: function(e) {},
+  onGoodsScroll: function(e) {
     // 联动左侧导航
     if (e.detail.scrollTop > 10 && !this.data.scrollDown) {
-
       this.setData({
         scrollDown: true,
-
       });
       // var temp_header=
     } else if (e.detail.scrollTop < 10 && this.data.scrollDown) {
       this.setData({
         scrollDown: false,
-
       });
     }
-
     var scale = e.detail.scrollWidth / 550,
       scrollTop = e.detail.scrollTop / scale,
       h = 0,
       classifySeleted,
       len = e.detail.scrollHeight;
-
     len = this.data.goods.length;
-
-    this.data.goods.forEach(function (item, i) {
+    this.data.goods.forEach(function(item, i) {
 
       var _h = 70 + item.foods.length * (46 * 3 + 20 * 2);
 
@@ -99,12 +84,12 @@ Page({
     });
   },
   //移除商品
-  decreaseCart: function (e) {
+  decreaseCart: function(e) {
     var food_id = e.currentTarget.dataset.food_id;
     var index = e.currentTarget.dataset.itemIndex;
     var parentIndex = e.currentTarget.dataset.parentindex;
     this.data.goods[parentIndex].foods[index].Count--
-    var num = this.data.goods[parentIndex].foods[index].Count;
+      var num = this.data.goods[parentIndex].foods[index].Count;
     var mark = 'a' + index + 'b' + parentIndex
     var name = this.data.goods[parentIndex].foods[index].food_name;
     var price = this.data.goods[parentIndex].foods[index].food_price;
@@ -152,7 +137,7 @@ Page({
       }
     }
   },
-  decreaseShopCart: function (e) {
+  decreaseShopCart: function(e) {
     // console.log(e);
     this.decreaseCart(e);
   },
@@ -173,8 +158,6 @@ Page({
     var price = this.data.goods[parentIndex].foods[index].food_price;
     var num = this.data.goods[parentIndex].foods[index].Count;
     var name = this.data.goods[parentIndex].foods[index].food_name;
-
-
     var obj = {
       price: price,
       num: num,
@@ -202,12 +185,12 @@ Page({
       payDesc: this.payDesc()
     })
   },
-  addShopCart: function (e) {
+  addShopCart: function(e) {
     // console.log(e);F
     this.addCart(e);
   },
   //计算总价
-  calTotalPrice: function () {
+  calTotalPrice: function() {
     var carArray = this.data.carArray;
     var totalPrice = 0;
     var totalCount = 0;
@@ -224,7 +207,7 @@ Page({
     });
   },
 
-  submit_pay: function (e) {
+  submit_pay: function(e) {
     // console.log(e);
 
     var data = {
@@ -233,9 +216,16 @@ Page({
       uer_info: this.data.user_info
     }
     // console.log(this.data.user_info)
-    wx.navigateTo({
-      url: '/pages/store/payed1/payed1?order_info=' + JSON.stringify(data),
-    })
+    if (app.appData.userinfo == null) {
+      wx.navigateTo({
+        url: '../me/login/login',
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/store/payed1/payed1?order_info=' + JSON.stringify(data),
+      })
+    }
+
 
   },
   payDesc() {
@@ -261,7 +251,7 @@ Page({
   //   })
   // },
 
-  empty: function (e) {
+  empty: function(e) {
 
     this.data.cartList.list = {}
 
@@ -279,7 +269,7 @@ Page({
     })
   },
   //彈起購物車
-  toggleList: function () {
+  toggleList: function() {
     if (!this.data.totalCount) {
       return;
     }
@@ -290,7 +280,7 @@ Page({
     //console.log(this.data.fold);
     this.cartShow(fold)
   },
-  cartShow: function (fold) {
+  cartShow: function(fold) {
     // console.log(fold);
     if (fold == false) {
       this.setData({
@@ -304,12 +294,10 @@ Page({
     // console.log(this.data.cartShow);
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
+    console.log(app.appData.click_index+"232323");
     // 页面初始化 options为页面跳转所带来的参数
-
-
     if (options) {
-
       var that = this;
       let data = JSON.parse(options.store_info)
       // console.log(data)
@@ -318,15 +306,12 @@ Page({
         user_info: data.uer_info
       })
     }
-    // console.log(this.data.user_info)
     var that = this;
     var temp_store_info = wx.getStorageSync("store_id");
-    // console.log(temp_store_info);
+    var temp_food_store_id = wx.getStorageSync("food_store_id");
     that.setData({
-      store_id: temp_store_info
+      store_id: temp_store_info,
     })
-    // console.log(that.data.store_id);
-
     wx.request({
       url: 'https://www.leijiangmm.xyz/food',
       data: {
@@ -336,12 +321,10 @@ Page({
         "content-type": "application/x-www-form-urlencoded"
       },
       method: 'POST',
-      success: function (res) {
-
+      success: function(res) {
         // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
           for (var j = 0; j < res.data[i].foods.length; j++) {
-            // console.log(res.data[i].foods[j].food_picpath);
             var temp_src1 = '' + res.data[i].foods[j].food_picpath;
             var temp_src3 = temp_src1.substring(7).replace("\\", "/");
             var temp_src = "https://www.leijiangmm.xyz" + temp_src3;
@@ -355,19 +338,13 @@ Page({
               "Count": 0
             };
             temp_foods[j] = temp_foodss;
-            // console.log(temp_foodss);
           }
           temp_goods[i] = {
             foods: temp_foods,
             class_name: res.data[i].class_name
           };
           temp_foods = [];
-
-
         }
-
-
-
         that.setData({
           goods: temp_goods
         })
@@ -377,19 +354,15 @@ Page({
     this.setData({
       payDesc: this.payDesc()
     });
-
-
-
-
   },
 
-  onShow: function () {
+  onShow: function() {
     // 页面显示
   },
-  onHide: function () {
+  onHide: function() {
     // 页面隐藏
   },
-  onUnload: function () {
+  onUnload: function() {
     // 页面关闭
   }
 })

@@ -17,41 +17,9 @@ Page({
     store_img:null,
     cost:null,
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  // onLoad: function(options) {
-  //   var that = this;
-  //   wx.request({
-  //     url: 'https://www.easy-mock.com/mock/5bd9a4325c4a0e732444a994/order',
-  //     data: {
-  //       order_id:app.appData.order_id
-  //     },
-  //     header: {
-  //       'content-type': 'application/json' // 默认值
-  //     },
-  //     success(res) {
-  //       console.log(res)
-  //       that.setData({
-  //         arr: res.data.order_detail.arr,
-  //         discount: res.data.order_detail.discount,
-  //         customer_name: res.data.order_detail.customer_name,
-  //         customer_phone: res.data.order_detail.customer_phone,
-  //         customer_address: res.data.order_detail.customer_address,
-  //         order_number: res.data.order_detail.order_number,
-  //         order_data: res.data.order_detail.order_data,
-  //         order_time: res.data.order_detail.order_time,
-  //       })
-  //     },
-  //     fail(res) {
-  //       console.log("获取订单详情信息失败");
-  //     }
-  //   })
-  // },
   onLoad:function(){
     
-    console.log(app.appData.order[app.appData.order_index])
+    // console.log(app.appData.order[app.appData.order_index])
     this.setData({
       store_img: app.appData.order[app.appData.order_index].img,
       store_name: app.appData.order[app.appData.order_index].store_name,
