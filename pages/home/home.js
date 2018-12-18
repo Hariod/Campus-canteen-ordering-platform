@@ -208,7 +208,6 @@ Page({
     }
     wx.navigateTo({
       url: '/pages/store/store?store_info=' + JSON.stringify(temp_data),
-
     })
   },
   /**

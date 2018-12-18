@@ -2,6 +2,7 @@
 var hot_information = {}
 var hot = []
 var app=getApp()
+var temp_status = null;
 Page({
   /**
    * 页面的初始数据
@@ -89,8 +90,15 @@ Page({
     app.appData.click_index=2;
     console.log(app.appData.click_index);
     wx.setStorageSync("food_store_id", event.currentTarget.dataset.foods_belong_store_id);
+    if (app.appData.userinfo != null) {
+      temp_status = app.appData.userinfo
+    }
+    var temp_data = {
+
+      uer_info: temp_status
+    }
     wx.navigateTo({
-      url: '../store/store',
+      url: '/pages/store/store?store_info=' + JSON.stringify(temp_data),
     })
   }
 })

@@ -11,10 +11,16 @@ page{
   justify-content: space-between;
   align-items: center;
 }
-.logs_imgs{
+open-data{
   width: 100rpx;
   height: 100rpx;
-  border-radius: 50%;
+  border-radius: 50rpx;
+}
+.baowei{
+  width: 100rpx;
+  height: 100rpx;
+ border-radius: 50rpx;
+ overflow: hidden;
 }
 .logs_img{
   display: flex;
@@ -161,5 +167,4 @@ button::after{
   color: #CCCCCC;
   margin-top: 10rpx;
 }
-
 

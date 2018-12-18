@@ -3,14 +3,16 @@
   <!--头部开始  -->
   <view class='logs_header' style="background:{{color}}">
     <view class='logs_img'>
-      <image src='{{avatarUrl}}' class='logs_imgs'></image>
+      <!-- <image src='{{avatarUrl}}' ></image> -->
+      <view class="baowei">
+      <open-data type="userAvatarUrl" class='logs_imgs'></open-data> 
+      </view>
       <view class='logs_name'>
         <view class='logs_name1'>{{nickName}}({{username}})</view>
       </view>
-    </view>
+   </view>
   </view>
   <!--头部结束  -->
-
   <view class='logs_order'>
     <!--收货地址  -->
     <view class='logs_center' bindtap='map'>
@@ -29,8 +31,6 @@
       </view>
     </view>
   </view>
-
- 
   <!--——————————————尾部——————————————  -->
   <view class="footer">
     <view class="copyright" bindtap='tzxcx'>

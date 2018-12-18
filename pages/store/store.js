@@ -38,7 +38,8 @@ Page({
     scroll_top: 0, // 滚动到位置。
     start_scroll: 0, // 滚动前的位置。
     touch_down: 0,
-    store_id:null
+    store_id:null,
+    food_store_id:null
   },
 
   selectMenu: function(e) {
@@ -209,7 +210,6 @@ Page({
 
   submit_pay: function(e) {
     // console.log(e);
-
     var data = {
       cartList: this.data.cartList,
       store_info: this.data.store_info,
@@ -309,9 +309,17 @@ Page({
     var that = this;
     var temp_store_info = wx.getStorageSync("store_id");
     var temp_food_store_id = wx.getStorageSync("food_store_id");
-    that.setData({
-      store_id: temp_store_info,
-    })
+  
+    if(app.appData.click_index==1){
+      that.setData({
+        store_id: temp_store_info
+      })
+    }else if(app.appData.click_index==2){
+      that.setData({
+        store_id: temp_food_store_id
+      })
+    }
+   
     wx.request({
       url: 'https://www.leijiangmm.xyz/food',
       data: {

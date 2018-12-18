@@ -40,10 +40,6 @@ App({
 
           if (res.code) {
             var code = res.code;
-            // console.log(res);
-
-
-
             wx.getSetting({
               success: res => {
                 wx.showToast({
