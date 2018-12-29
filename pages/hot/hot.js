@@ -14,6 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '玩命加载中...',
+    })
     var that = this;
     wx.request({
       url: 'https://www.leijiangmm.xyz/sellHot',
@@ -35,6 +38,7 @@ Page({
         that.setData({ arr: hot });
       },
     })
+    wx.hideLoading();
   },
 
   /**

@@ -31,7 +31,7 @@ Page({
     store_status_string: '在营业',
     classifySeleted: '',
     header_show: true,
-    store_info: {},
+    store_info: {},//店铺名称信息
     user_info: {},
     height: 0, // scroll-wrap 的高度，这个高度是固定的
     inner_height: 0, // inner-wrap 的高度，这个高度是动态的
@@ -217,9 +217,18 @@ Page({
     }
     // console.log(this.data.user_info)
     if (app.appData.userinfo == null) {
-      wx.navigateTo({
-        url: '../me/login/login',
+      wx.showModal({
+        content: '您还没有登录，是否登录?',
+        duration:1000,
+        success:function(res){
+          if(res.confirm){
+            wx.navigateTo({
+              url: '../me/login/login'
+            })
+          }
+        }
       })
+      
     } else {
       wx.navigateTo({
         url: '/pages/store/payed1/payed1?order_info=' + JSON.stringify(data),
@@ -295,7 +304,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(app.appData.click_index+"232323");
     // 页面初始化 options为页面跳转所带来的参数
     if (options) {
       var that = this;
@@ -319,7 +327,6 @@ Page({
         store_id: temp_food_store_id
       })
     }
-   
     wx.request({
       url: 'https://www.leijiangmm.xyz/food',
       data: {
@@ -357,6 +364,31 @@ Page({
           goods: temp_goods
         })
         // console.log(that.data.goods);
+      }
+    })
+    wx.request({
+      url: 'https://www.leijiangmm.xyz/selHotStore',
+      data: {
+        id: that.data.store_id
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      method: 'POST',
+      success: function (res) {
+        console.log("这个的么");
+        console.log(res.data);
+        var img_src1 = '' + res.data[0].store_picpath;
+        var img_src3 = img_src1.substring(7).replace("\\", "/");
+        var img_src = "https://www.leijiangmm.xyz" + img_src3;
+        var hot_store_info = {
+            "store_img":img_src,
+            "store_name": res.data[0].store_name,
+            "store_desc": res.data[0].store_desc,
+            "statues": res.data[0].store_status
+          }
+          console.log(hot_store_info);
+        that.setData({ store_info: hot_store_info});
       }
     })
     this.setData({

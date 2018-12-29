@@ -8,7 +8,7 @@
       <open-data type="userAvatarUrl" class='logs_imgs'></open-data> 
       </view>
       <view class='logs_name'>
-        <view class='logs_name1'>{{nickName}}({{username}})</view>
+        <view class='logs_name1'><open-data type="userNickName"></open-data>({{username}})</view>
       </view>
    </view>
   </view>

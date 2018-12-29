@@ -191,6 +191,7 @@ Page({
   },
   to_store: function (e) {
     // console.log(e);
+    console.log(e.currentTarget.dataset);
     var that = this;
     app.appData.click_index=1
     console.log(app.appData.click_index);
@@ -214,6 +215,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading({
+      title: '玩命加载中...',
+    })
+    console.log(options);
     // console.log(app.appData.userinfo);
     var that = this;
     if (wx.getStorageSync('location')) {
@@ -255,7 +260,6 @@ Page({
       success: function (res) {
         // console.log(res.data)
         for (var i = 0; i < res.data.length; i++) {
-
           var temp_src1 = '' + res.data[i].store_picpath
           var temp_src3 = temp_src1.substring(7).replace("\\", "/");
           var temp_src = "https://www.leijiangmm.xyz" + temp_src3;
@@ -280,6 +284,7 @@ Page({
         // console.log(that.data.restaurant)
       }
     });
+    wx.hideLoading();
   },
 
   /**

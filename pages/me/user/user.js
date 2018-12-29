@@ -9,8 +9,6 @@ Page({
     coupon: 0,
     Vouchers: 0,
     username: null,
-    avatarUrl: "",//用户头像
-    nickName:"",
   },
 
   /**
@@ -27,18 +25,6 @@ Page({
     }
     var that=this;
     // //获取头像和名字
-    wx.getUserInfo({
-      success: function (res) {
-        // console.log(1);
-        // console.log(res);
-        var avatarUrl = 'userInfo.avatarUrl';
-        var nickName = 'userInfo.nickName';
-        that.setData({
-          avatarUrl: res.userInfo.avatarUrl,
-          nickName: res.userInfo.nickName,
-        })
-      }
-    })
   },
 
   /**

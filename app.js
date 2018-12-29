@@ -13,7 +13,8 @@ App({
   onShow: function (options) {
     
   },
-
+  onLoad:function(){
+  },
   /**
    * 当小程序从前台进入后台，会触发 onHide
    */
@@ -103,6 +104,7 @@ App({
       })
     }
   },
+  
   appData:{
     userinfo:null,
     appstore_id:null,

@@ -88,7 +88,6 @@ Page({
           wx.switchTab({
             url: '/pages/me/user/user',
           })
-          // wx.navigateBack();
         }
       },
     })
@@ -115,6 +114,7 @@ Page({
     wx.switchTab({
       url: '../../home/home',
     })
+  
   },
   regClick: function() {
     wx.redirectTo({
